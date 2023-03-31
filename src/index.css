@@ -1,0 +1,26 @@
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+.app {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 64px 2fr 1fr;
+  grid-column-gap: 4px;
+  grid-row-gap: 0px; 
+  height: 100vh;
+}
+.header {
+  grid-area: 1 / 1 / 2 / 2;
+}
+.imageContainer {
+  grid-area: 2 / 1 / 3 / 2;
+  display: flex;
+  justify-content: center;
+}
+.form {
+  display: flex;
+  justify-content: center;
+  grid-area: 3 / 1 / 4 / 2;
+}
