@@ -7,33 +7,57 @@
   width: 100%;
 }
 .year-guess-track {
-  background : rgb(221, 221, 221);
-  height: 16px;
-  border-radius: 50px;
+  background : #DCDCE4;
+  height: 8px;
+  border-radius: 4px;
 }
 .thumb {
-  background-color: #7d67ff;
-  border: 8px solid #ebe9f5;
+  border: 2px solid #EFEDFA;
   border-radius: 50%;
-  height: 36px;
-  width: 36px;
+  height: 24px;
+  width: 24px;
   top : -8px
 }
+.landmark {
+  border: 2px solid #EFEDFA;
+  border-radius: 8px;
+  height: 24px;
+  width: 8px;
+  top : -8px
+}
+.green{
+  background: #72DB76;
+}
+.yellow{
+  background: #F9D75F;
+}
+.red{
+  background: #FF8383;
+}
+.default{
+  background: #8473EF;
+}
+
 .years-marks {
-  top : 40px;
+  top : 24px;
   text-align: center;
   color: rgb(221, 221, 221);
+  width: 24px;
+}
+.year-label {
+  position: absolute;
   font-weight: 600;
   font-size: 1.2em;
-}
-.milestone {
-  margin: auto;
-  position: absolute;
-  height: 24px;
+  top : 28px;
+  left : 12px;
   left: 50%;
   transform: translate(-50%, 0);
+}
+.milestone {
+  position: absolute;
+  height: 24px;
   width: 4px;
-  top : 20px;
+  left: 10px;
   border-radius: 4px;
   background:  rgb(221, 221, 221);
 }
