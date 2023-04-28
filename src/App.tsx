@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { Dispatch, SetStateAction, createContext, useContext, useRef, useState } from 'react'
 import './App.css'
 import 'semantic-ui-css/semantic.min.css'
 import {Button,ButtonProps,Container,GridRow,Image, Label,Menu} from 'semantic-ui-react'
@@ -18,7 +18,13 @@ function Slider(props : {round:Round,setRound : Function}){
   const handleNextStepButton = function(){
     setStep("guess");
     console.log(props.round.number + 1);
+    setYear(1960);
     props.setRound(game.rounds[props.round.number + 1]);
+  }
+  const handleGuessButton = function(){
+    setStep("result");
+    const {score, setScore} = useContext(ScoreContext);
+    setScore(score + 300);
   }
   if(step === "guess"){ 
   return <Container className='middle aligned centered grid'>
@@ -28,11 +34,11 @@ function Slider(props : {round:Round,setRound : Function}){
     <GridRow>
       <YearSlider
       year={year}
-      onChange={(value)=> setYear(value)}
+      onChange={(value: number)=> setYear(value)}
     ></YearSlider>
     </GridRow>
     <GridRow>
-      <Button color='violet' size='big' onClick={()=>setStep("result")}>Guess</Button>
+      <Button color='violet' size='big' onClick={handleGuessButton}>Guess</Button>
       </GridRow>
 </Container>
 }
@@ -62,30 +68,39 @@ let sliderColor ="default";
     </GridRow>
   </Container>
 }
+interface ScoreHook {score:number, setScore :Dispatch<SetStateAction<number>>};
+const ScoreContext = createContext<ScoreHook>({} as ScoreHook);
+
 function App() {
   const [round, setRound] = useState(game.rounds[0]);
+  const [score,setScore] = useState(0);
  return (
-  <div className="app">
-    <Menu secondary className='header'>
-      <Menu.Item>
-        <Label>Round 3</Label>
-      </Menu.Item>
-      <Menu.Menu position='right'>
+  <ScoreContext.Provider value={
+    {score,setScore}
+    }>
+    <div className="app">
+      <Menu secondary className='header'>
         <Menu.Item>
-          <Label color='violet' className='scoreLabel'>3200 pts</Label>
+          <Label>Round {round.number}</Label>
         </Menu.Item>
-      </Menu.Menu>
-    </Menu>
-    <Container className='middle aligned centered grid'>
-      <GridRow>
-        <Photography link={round.image_link}></Photography>
-      </GridRow>    
-    </Container>
-       <Slider
-       round={round}
-       setRound={setRound}
-       ></Slider>
-  </div>
+        <Menu.Menu position='right'>
+          <Menu.Item>
+            <Label color='violet' className='scoreLabel'>{score} pts</Label>
+          </Menu.Item>
+        </Menu.Menu>
+      </Menu>
+      <Container className='middle aligned centered grid'>
+        <GridRow>
+          <Photography link={round.image_link}></Photography>
+        </GridRow>    
+      </Container>
+        <Slider
+        round={round}
+        setRound={setRound}
+        ></Slider>
+    </div>
+  </ScoreContext.Provider>
+
  )
 }
 

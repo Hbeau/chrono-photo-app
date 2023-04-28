@@ -3,12 +3,12 @@
         {
             "number" : 0,
             "year_to_guess" : 1963,
-            "image_link" : "http://localhost:5173/public/photo.jpg"
+            "image_link" : "https://hbeau-reimagined-tribble-jjpjgpxj99xc56x4-5173.preview.app.github.dev/public/photo.jpg"
         },
         {
             "number" : 1,
             "year_to_guess" : 1902,
-            "image_link" : "http://localhost:5173/public/photo2.jpg"
+            "image_link" : "https://hbeau-reimagined-tribble-jjpjgpxj99xc56x4-5173.preview.app.github.dev/public/photo2.jpg"
         }
     ]
      
